@@ -1,0 +1,447 @@
+/* --- RESET Y VARIABLES GLOBALES --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  --bg-dark: #121826;
+  --card-bg: #1a2234;
+  --input-bg: #131927;
+  --border-color: #2a354d;
+  --primary-red: #c9241b;
+  --primary-red-hover: #b01e16;
+  --text-white: #f5f6fa;
+  --text-muted: #7e8b9b;
+  --accent-yellow: #f5a623;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Decoraciones en bordes */
+.green-accent-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: #10b981;
+}
+
+.red-accent-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--primary-red);
+}
+
+/* Elementos periféricos */
+.top-left-status {
+  position: absolute;
+  top: 35px;
+  left: 40px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-yellow);
+}
+
+.top-right-nav {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 150px;
+}
+
+.bottom-left-btn {
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  width: 100px;
+}
+
+.bottom-right-caption {
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.bottom-center-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* --- TARJETA CENTRAL --- */
+.card-container {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 430px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem;
+}
+
+.card-container.wide {
+  max-width: 520px;
+}
+
+.card-subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.card-subtitle.red {
+  color: var(--primary-red);
+}
+
+.card-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #faf5e8;
+}
+
+.divider-line {
+  width: 25px;
+  height: 3px;
+  background-color: var(--accent-yellow);
+  margin: 14px auto 24px;
+  border-radius: 2px;
+}
+
+.divider-horizontal {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 1.2rem 0;
+}
+
+/* --- ILUSTRACIÓN DE CARTAS (LOBBY) --- */
+.cards-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+  position: relative;
+  margin: 10px 0 25px;
+  width: 100%;
+}
+
+.card-item {
+  width: 75px;
+  height: 105px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.card-back {
+  left: calc(50% - 60px);
+  transform: rotate(-12deg);
+  background: repeating-linear-gradient(45deg, #c9241b, #c9241b 4px, #a71b14 4px, #a71b14 8px);
+  border: 3px solid #fff;
+}
+
+.card-ace {
+  z-index: 2;
+  color: #121826;
+  font-weight: bold;
+  border: 1px solid #ddd;
+}
+
+.card-ace .top-left {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: 0.75rem;
+}
+
+.card-ace .spade-center {
+  font-size: 2rem;
+}
+
+.card-ace .bottom-right {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: 0.75rem;
+}
+
+.card-king {
+  right: calc(50% - 60px);
+  transform: rotate(12deg);
+  border: 1px solid #ddd;
+  color: #c9241b;
+  font-weight: bold;
+  background: linear-gradient(135deg, #fff 0%, #fdf2f2 100%);
+}
+
+.card-king .top-left {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: 0.75rem;
+}
+
+.card-king .king-center {
+  font-size: 1.4rem;
+}
+
+.card-king .bottom-right {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: 0.75rem;
+}
+
+.lobby-message {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* --- FORMULARIOS --- */
+form {
+  width: 100%;
+}
+
+.form-group {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1px solid #232c40;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: #3b4d73;
+}
+
+.input-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+/* --- BOTONES Y ENLACES --- */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--primary-red);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-red-hover);
+}
+
+.btn-secondary {
+  background-color: var(--input-bg);
+  border-color: #232c40;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: #192032;
+}
+
+.btn-outline {
+  background-color: rgba(26, 34, 52, 0.6);
+  border: 1px solid var(--border-color);
+  color: #cfd6e0;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+}
+
+.btn-outline:hover {
+  background-color: var(--card-bg);
+  color: #fff;
+}
+
+.form-footer-links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+}
+
+.link-yellow {
+  color: var(--accent-yellow);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link-muted {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.link-yellow:hover,
+.link-muted:hover {
+  text-decoration: underline;
+}
+
+/* --- PASOS DE RECUPERACIÓN --- */
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1.5rem 0 2rem;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.step-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.95rem;
+  background-color: #232c40;
+  color: var(--text-muted);
+}
+
+.step-item.active .step-circle {
+  background-color: var(--primary-red);
+  color: #fff;
+}
+
+.step-label {
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.step-item.active .step-label {
+  color: var(--accent-yellow);
+}
+
+.code-inputs-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.code-box {
+  flex: 1;
+  height: 42px;
+  background-color: var(--input-bg);
+  border: 1px solid #232c40;
+  border-radius: 8px;
+  text-align: center;
+  color: #fff;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+.resend-link-container {
+  width: 100%;
+  text-align: right;
+  font-size: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+
+.back-btn {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--accent-yellow);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}

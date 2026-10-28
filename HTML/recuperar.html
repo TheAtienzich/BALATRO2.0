@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Balatro 2.0 - Recuperar Acceso</title>
+      <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="red-accent-top"></div>
+
+    <div class="card-container wide">
+      <span class="card-subtitle red">Recuperar acceso</span>
+      <h1 class="card-title">BALATRO 2.0</h1>
+      <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Olvidar su contraseña</span>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 6px;">Sigue estos pasos para restablecer tu contraseña.</p>
+
+      <div class="divider-horizontal"></div>
+
+      <div class="steps-container">
+        <div class="step-item active">
+          <div class="step-circle">1</div>
+          <span class="step-label">CORREO</span>
+        </div>
+        <div class="step-item">
+          <div class="step-circle">2</div>
+          <span class="step-label">CÓDIGO</span>
+        </div>
+        <div class="step-item">
+          <div class="step-circle">3</div>
+          <span class="step-label">NUEVA CONTRASEÑA</span>
+        </div>
+      </div>
+
+      <form action="login.html" method="get">
+        <div class="form-group">
+          <label>Correo</label>
+          <input type="email" class="form-control" placeholder="Escribe tu correo electrónico" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 4px;">
+          <label>Código de verificación</label>
+          <div class="code-inputs-group">
+            <input type="text" maxlength="1" class="code-box" placeholder="—">
+            <input type="text" maxlength="1" class="code-box" placeholder="—">
+            <input type="text" maxlength="1" class="code-box" placeholder="—">
+            <input type="text" maxlength="1" class="code-box" placeholder="—">
+          </div>
+        </div>
+
+        <div class="resend-link-container">
+          <span style="color: var(--text-muted);">¿No recibiste el código? </span>
+          <a href="#" class="link-muted" style="color: #fff;">Reenviar</a>
+        </div>
+
+        <div class="form-group">
+          <label>Nueva contraseña</label>
+          <input type="password" class="form-control" placeholder="••••••••••" required>
+        </div>
+
+        <div class="form-group">
+          <label>Repetir contraseña</label>
+          <input type="password" class="form-control" placeholder="••••••••••" required>
+          <div class="input-hint">Mínimo 8 caracteres</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin-top: 1.2rem;">VERIFICAR CÓDIGO Y RESTABLECER</button>
+      </form>
+
+      <a href="login.html" class="back-btn">
+        ← Volver a Iniciar sesión
+      </a>
+    </div>
+  </body>
+</html>
