@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balatro 2.0 - Tienda de Divisas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<main class="shop-layout">
+  <header class="shop-topbar">
+    <div>
+      <span class="card-subtitle">BANCO CENTRAL</span>
+      <h1 class="card-title" style="font-size: 1.8rem; text-align: left;">PAQUETES DE DIVISAS</h1>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <div class="currency-display">
+        🪙 <span id="user-fichas">1,450</span> Divisas
+      </div>
+      <a href="../index.html" class="btn btn-outline" style="width: auto;">Volver</a>
+    </div>
+  </header>
+
+  <nav class="shop-nav">
+    <a href="tienda_barajas.html" class="nav-tab">🃏 Barajas (2 Disponibles)</a>
+    <a href="tienda_pokemon.html" class="nav-tab">⚡ Pokémon (PokéAPI)</a>
+    <a href="tienda_divisas.html" class="nav-tab active">💰 Comprar Divisas</a>
+  </nav>
+
+  <!-- Botón Template Admin -->
+  <div class="admin-action-bar">
+    <a href="#admin-pack-modal" class="btn btn-outline" style="width: auto; border-color: var(--accent-yellow); color: var(--accent-yellow);">
+      + Crear Nuevo Paquete (Admin Template)
+    </a>
+  </div>
+
+  <!-- Catálogo de Paquetes -->
+  <section class="shop-grid">
+    <!-- Paquete 1 -->
+    <article class="item-card">
+      <span class="item-badge">Básico</span>
+      <div style="font-size: 3rem; margin: 15px 0;">🪙</div>
+      <h3 class="item-name">500 Divisas</h3>
+      <p class="lobby-message" style="margin-bottom: 15px; font-size: 0.8rem;">Ideal para comenzar y personalizar tu primera baraja.</p>
+      <span class="item-price" style="color: #fff;">2.99 €</span>
+      <button class="btn btn-primary" style="font-size: 0.85rem;">Comprar Paquete</button>
+    </article>
+
+    <!-- Paquete 2 -->
+    <article class="item-card" style="border-color: var(--accent-yellow);">
+      <span class="item-badge" style="color: #10b981;">Más Popular</span>
+      <div style="font-size: 3rem; margin: 15px 0;">💰</div>
+      <h3 class="item-name">1,500 Divisas</h3>
+      <p class="lobby-message" style="margin-bottom: 15px; font-size: 0.8rem;">+150 Divisas de bonificación incluidas.</p>
+      <span class="item-price" style="color: #fff;">7.99 €</span>
+      <button class="btn btn-primary" style="font-size: 0.85rem;">Comprar Paquete</button>
+    </article>
+
+    <!-- Paquete 3 -->
+    <article class="item-card">
+      <span class="item-badge">Gran Apostador</span>
+      <div style="font-size: 3rem; margin: 15px 0;">💎</div>
+      <h3 class="item-name">5,000 Divisas</h3>
+      <p class="lobby-message" style="margin-bottom: 15px; font-size: 0.8rem;">Suficiente para desbloquear barajas y cartas raras.</p>
+      <span class="item-price" style="color: #fff;">19.99 €</span>
+      <button class="btn btn-primary" style="font-size: 0.85rem;">Comprar Paquete</button>
+    </article>
+  </section>
+</main>
+
+<!-- TEMPLATE MODAL: AÑADIR NUEVO PAQUETE (ADMIN) -->
+<div id="admin-pack-modal" class="modal-overlay">
+  <div class="card-container wide" style="position: relative;">
+    <a href="#" class="modal-close-btn">&times;</a>
+    <span class="card-subtitle red">ADMINISTRADOR</span>
+    <h2 class="card-title" style="font-size: 1.5rem;">NUEVO PAQUETE DE DIVISAS</h2>
+    <div class="divider-line"></div>
+
+    <form action="#" method="post">
+      <div class="form-group">
+        <label>Nombre del Paquete</label>
+        <input type="text" class="form-control" placeholder="Ej: Cofre de Diamantes" required>
+      </div>
+
+      <div class="form-group">
+        <label>Cantidad de Divisas otorgadas</label>
+        <input type="number" min="100" step="50" class="form-control" placeholder="2500" required>
+      </div>
+
+      <div class="form-group">
+        <label>Precio Real (€)</label>
+        <input type="number" min="0.5" step="0.01" class="form-control" placeholder="12.99" required>
+      </div>
+
+      <div class="form-group">
+        <label>Etiqueta / Distintivo (Opcional)</label>
+        <input type="text" class="form-control" placeholder="Ej: Oferta Limitada, 20% Extra...">
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+        Publicar Paquete de Divisas
+      </button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

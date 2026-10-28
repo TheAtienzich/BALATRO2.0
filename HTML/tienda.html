@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balatro 2.0 - Tienda</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="display: block;">
+<main class="main-view-container">
+
+  <!-- Barra Superior -->
+  <header class="header-bar">
+    <div class="header-left">
+      <a href="../index.html" class="back-square-btn">‹</a>
+      <div>
+        <div class="breadcrumb-path">Menú / Tienda</div>
+        <div class="top-left-status" style="position: static; font-size: 0.75rem;">
+          <span class="status-dot"></span>
+          Sesión iniciada
+        </div>
+      </div>
+    </div>
+
+    <div class="header-center-title">BALATRO 2.0</div>
+
+    <div class="header-right">
+      <div class="balance-badge">
+        Saldo <strong>1.250 fichas</strong>
+      </div>
+      <a href="#" class="btn btn-outline" style="width: auto; padding: 10px 18px;">Configuración</a>
+    </div>
+  </header>
+
+  <!-- Título de la página -->
+  <section class="page-header-intro">
+    <h1 class="main-page-title">Tienda</h1>
+    <p class="page-subtitle-text">Encuentra tu próxima baraja, un compañero o más fichas.</p>
+  </section>
+
+  <!-- Rejilla de Secciones de Tienda -->
+  <section class="hub-grid">
+
+    <!-- Tarjeta 1: Barajas -->
+    <article class="hub-card">
+      <div class="hub-card-preview">
+        <div class="preview-mini-card"></div>
+      </div>
+      <h2 class="hub-card-name">Barajas</h2>
+      <p class="hub-card-desc">6 barajas para cambiar el estilo de tus cartas.</p>
+      <a href="tienda_barajas.html" class="btn btn-primary">Explorar</a>
+    </article>
+
+    <!-- Tarjeta 2: Pokémon -->
+    <article class="hub-card">
+      <div class="hub-card-preview">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" class="preview-pokemon-img">
+      </div>
+      <h2 class="hub-card-name">Pokémon</h2>
+      <p class="hub-card-desc">6 compañeros para acompañarte en la mesa.</p>
+      <a href="tienda_pokemon.html" class="btn btn-primary">Explorar</a>
+    </article>
+
+    <!-- Tarjeta 3: Divisas -->
+    <article class="hub-card">
+      <div class="hub-card-preview">
+        <div class="preview-coins-container">
+          <div class="preview-coin c1">1</div>
+          <div class="preview-coin c2">1</div>
+        </div>
+      </div>
+      <h2 class="hub-card-name">Divisas</h2>
+      <p class="hub-card-desc">Packs de fichas para ampliar tu colección.</p>
+      <a href="tienda_divisas.html" class="btn btn-primary">Explorar</a>
+    </article>
+
+  </section>
+
+  <!-- Pie de página -->
+  <footer class="hub-footer">
+    <a href="#" class="btn btn-outline" style="width: 100px;">Créditos</a>
+    <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">BALATRO 2.0</span>
+    <span style="font-size: 0.75rem; color: var(--text-muted);">Cada mano cuenta.</span>
+  </footer>
+
+</main>
+</body>
+</html>

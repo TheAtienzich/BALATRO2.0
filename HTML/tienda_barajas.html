@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balatro 2.0 - Tienda de Barajas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<main class="shop-layout">
+  <!-- Barra superior -->
+  <header class="shop-topbar">
+    <div>
+      <span class="card-subtitle">TIENDA EXCLUSIVA</span>
+      <h1 class="card-title" style="font-size: 1.8rem; text-align: left;">BARAJAS Y REVERSOS</h1>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <div class="currency-display">
+        🪙 <span id="user-fichas">1,450</span> Divisas
+      </div>
+      <a href="../index.html" class="btn btn-outline" style="width: auto;">Volver</a>
+    </div>
+  </header>
+
+  <!-- Pestañas de tienda -->
+  <nav class="shop-nav">
+    <a href="tienda_barajas.html" class="nav-tab active">🃏 Barajas (2 Disponibles)</a>
+    <a href="tienda_pokemon.html" class="nav-tab">⚡ Pokémon</a>
+    <a href="tienda_divisas.html" class="nav-tab">💰 Comprar Divisas</a>
+  </nav>
+
+  <!-- Botón plantilla admin -->
+  <div class="admin-action-bar">
+    <a href="#admin-deck-modal" class="btn btn-outline" style="width: auto; border-color: var(--accent-yellow); color: var(--accent-yellow);">
+      + Añadir Baraja (Admin Template)
+    </a>
+  </div>
+
+  <!-- Catálogo: Solo 2 barajas iniciales -->
+  <section class="shop-grid">
+    <!-- Opción 1 -->
+    <article class="item-card">
+      <span class="item-badge">Básica</span>
+      <div class="deck-card-preview default-red"></div>
+      <h3 class="item-name">Baraja Rubí</h3>
+      <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">El reverso tradicional rojo de la casa.</p>
+      <span class="item-price">GRATIS</span>
+      <button class="btn btn-secondary" style="font-size: 0.8rem;" disabled>En propiedad</button>
+    </article>
+
+    <!-- Opción 2 -->
+    <article class="item-card">
+      <span class="item-badge">Especial</span>
+      <div class="deck-card-preview default-blue"></div>
+      <h3 class="item-name">Baraja Zafiro</h3>
+      <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Reverso de cartas azul cobalto clásico.</p>
+      <span class="item-price">🪙 250 Divisas</span>
+      <button class="btn btn-primary" style="font-size: 0.8rem;">Comprar</button>
+    </article>
+  </section>
+</main>
+
+<!-- TEMPLATE MODAL: AÑADIR BARAJA (ADMIN) -->
+<div id="admin-deck-modal" class="modal-overlay">
+  <div class="card-container wide" style="position: relative;">
+    <a href="#" class="modal-close-btn">&times;</a>
+    <span class="card-subtitle red">ADMINISTRADOR</span>
+    <h2 class="card-title" style="font-size: 1.5rem;">NUEVA BARAJA</h2>
+    <div class="divider-line"></div>
+
+    <!-- Formulario para subir al servidor -->
+    <form action="#" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label>Nombre de la Baraja</label>
+        <input type="text" class="form-control" placeholder="Ej: Baraja Esmeralda Neón" required>
+      </div>
+
+      <div class="form-group">
+        <label>Imagen del Reverso (Textura de carta)</label>
+        <input type="file" id="deck-img" accept="image/*" class="form-control" required>
+        <div class="input-hint">Resolución recomendada: 750x1050 px (PNG/WebP)</div>
+      </div>
+
+      <div class="form-group">
+        <label>Precio en Divisas</label>
+        <input type="number" min="0" step="50" class="form-control" placeholder="500" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+        Publicar Baraja en la Tienda
+      </button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

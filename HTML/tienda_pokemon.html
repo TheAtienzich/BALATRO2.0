@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balatro 2.0 - Tienda Pokémon</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<main class="shop-layout">
+  <header class="shop-topbar">
+    <div>
+      <span class="card-subtitle">EDICIÓN ESPECIAL</span>
+      <h1 class="card-title" style="font-size: 1.8rem; text-align: left;">TIENDA POKÉMON</h1>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <div class="currency-display">
+        🪙 <span id="user-fichas">1,450</span> Divisas
+      </div>
+      <a href="../index.html" class="btn btn-outline" style="width: auto;">Volver</a>
+    </div>
+  </header>
+
+  <nav class="shop-nav">
+    <a href="tienda_barajas.html" class="nav-tab">🃏 Barajas (2 Disponibles)</a>
+    <a href="tienda_pokemon.html" class="nav-tab active">⚡ Pokémon (PokéAPI)</a>
+    <a href="tienda_divisas.html" class="nav-tab">💰 Comprar Divisas</a>
+  </nav>
+
+  <!-- Botón Template Admin -->
+  <div class="admin-action-bar">
+    <a href="#admin-poke-modal" class="btn btn-outline" style="width: auto; border-color: var(--accent-yellow); color: var(--accent-yellow);">
+      + Poner Pokémon a la Venta (Admin Template)
+    </a>
+  </div>
+
+  <!-- Catálogo de Pokémon a la venta -->
+  <section class="shop-grid" id="pokemon-catalog">
+    <!-- Carta Pikachu -->
+    <article class="item-card">
+      <span class="item-badge">#025 • Eléctrico</span>
+      <div class="pokemon-img-box">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="Pikachu">
+      </div>
+      <h3 class="item-name">Pikachu</h3>
+      <span class="item-price">🪙 600 Divisas</span>
+      <button class="btn btn-primary" style="font-size: 0.8rem;">Comprar Carta</button>
+    </article>
+
+    <!-- Carta Gengar -->
+    <article class="item-card">
+      <span class="item-badge">#094 • Fantasma</span>
+      <div class="pokemon-img-box">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png" alt="Gengar">
+      </div>
+      <h3 class="item-name">Gengar</h3>
+      <span class="item-price">🪙 850 Divisas</span>
+      <button class="btn btn-primary" style="font-size: 0.8rem;">Comprar Carta</button>
+    </article>
+
+    <!-- Carta Mewtwo -->
+    <article class="item-card">
+      <span class="item-badge">#150 • Psíquico</span>
+      <div class="pokemon-img-box">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png" alt="Mewtwo">
+      </div>
+      <h3 class="item-name">Mewtwo</h3>
+      <span class="item-price">🪙 1,500 Divisas</span>
+      <button class="btn btn-primary" style="font-size: 0.8rem;">Comprar Carta</button>
+    </article>
+  </section>
+</main>
+
+<!-- TEMPLATE MODAL: PUBLICAR POKÉMON (ADMIN CON POKÉAPI) -->
+<div id="admin-poke-modal" class="modal-overlay">
+  <div class="card-container wide" style="position: relative;">
+    <a href="#" class="modal-close-btn">&times;</a>
+    <span class="card-subtitle red">ADMINISTRADOR POKÉAPI</span>
+    <h2 class="card-title" style="font-size: 1.5rem;">HABILITAR POKÉMON</h2>
+    <div class="divider-line"></div>
+
+    <form onsubmit="event.preventDefault(); agregarPokemonDesdeAPI();">
+      <div class="form-group">
+        <label>Buscar en PokéAPI (Nombre o ID)</label>
+        <div style="display: flex; gap: 8px;">
+          <input type="text" id="poke-search-input" class="form-control" placeholder="Ej: charizard, lucario, 6..." required>
+          <button type="button" class="btn btn-outline" style="width: auto;" onclick="buscarEnPokeAPI()">Buscar</button>
+        </div>
+      </div>
+
+      <!-- Previsualización obtenida de la API -->
+      <div id="poke-preview" style="display: none; margin: 10px 0; padding: 10px; background: var(--input-bg); border-radius: 8px;">
+        <img id="poke-preview-img" src="" style="width: 80px; height: 80px; object-fit: contain;">
+        <p id="poke-preview-name" style="font-weight: bold; text-transform: capitalize;"></p>
+      </div>
+
+      <div class="form-group">
+        <label>Precio de Venta en Divisas</label>
+        <input type="number" id="poke-price" min="50" step="50" class="form-control" placeholder="750" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+        Poner a la Venta
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  let pokemonSeleccionado = null;
+
+  async function buscarEnPokeAPI() {
+    const query = document.getElementById('poke-search-input').value.toLowerCase().trim();
+    if (!query) return;
+
+    try {
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+      if (!res.ok) throw new Error("No encontrado");
+      const data = await res.json();
+
+      pokemonSeleccionado = {
+        name: data.name,
+        id: data.id,
+        image: data.sprites.other['official-artwork'].front_default || data.sprites.front_default,
+        type: data.types[0].type.name
+      };
+
+      // Mostrar Preview
+      document.getElementById('poke-preview-img').src = pokemonSeleccionado.image;
+      document.getElementById('poke-preview-name').innerText = `#${data.id} ${data.name} (${pokemonSeleccionado.type})`;
+      document.getElementById('poke-preview').style.display = 'block';
+    } catch (err) {
+      alert("Pokémon no encontrado en PokéAPI.");
+    }
+  }
+
+  function agregarPokemonDesdeAPI() {
+    if (!pokemonSeleccionado) {
+      alert("Primero busca y selecciona un Pokémon con el botón 'Buscar'.");
+      return;
+    }
+    const price = document.getElementById('poke-price').value;
+
+    const card = document.createElement('article');
+    card.className = 'item-card';
+    card.innerHTML = `
+        <span class="item-badge">#${pokemonSeleccionado.id} • ${pokemonSeleccionado.type}</span>
+        <div class="pokemon-img-box">
+          <img src="${pokemonSeleccionado.image}" alt="${pokemonSeleccionado.name}">
+        </div>
+        <h3 class="item-name">${pokemonSeleccionado.name}</h3>
+        <span class="item-price">🪙 ${price} Divisas</span>
+        <button class="btn btn-primary" style="font-size: 0.8rem;">Comprar Carta</button>
+      `;
+
+    document.getElementById('pokemon-catalog').appendChild(card);
+    window.location.hash = '#'; // Cierra el modal
+  }
+</script>
+</body>
+</html>
