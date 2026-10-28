@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balatro 2.0 - Perfil</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="display: block;">
+<main class="main-view-container">
+
+  <!-- Barra Superior -->
+  <header class="header-bar">
+    <div class="header-left">
+      <a href="../index.html" class="back-square-btn">‹</a>
+      <div>
+        <div class="breadcrumb-path">Menú / Perfil</div>
+        <div class="top-left-status" style="position: static; font-size: 0.75rem;">
+          <span class="status-dot"></span>
+          Sesión iniciada
+        </div>
+      </div>
+    </div>
+
+    <div class="header-center-title">BALATRO 2.0</div>
+
+    <div class="header-right">
+      <a href="perfil.html" class="btn btn-outline" style="width: auto; padding: 10px 18px;">Perfil</a>
+      <a href="configuracion.html" class="btn btn-outline" style="width: auto; padding: 10px 18px;">Configuración</a>
+    </div>
+  </header>
+
+  <!-- Tarjeta de perfil -->
+  <section class="pf-card">
+    <h1 class="pf-title">Perfil</h1>
+    <p class="pf-subtitle">Tu identidad en la mesa.</p>
+
+    <div class="pf-layout">
+
+      <!-- Columna del avatar -->
+      <div class="pf-avatar-col">
+        <div class="pf-avatar">
+          <img id="pf-avatar-img" src="" alt="Foto de perfil">
+        </div>
+        <button type="button" class="pf-btn-secondary" id="pf-btn-foto">Cambiar foto</button>
+        <input type="file" id="pf-file" accept="image/jpeg,image/png" hidden>
+        <p class="pf-hint">JPG o PNG · Máx. 5 MB</p>
+      </div>
+
+      <!-- Columna del formulario -->
+      <form class="pf-form" id="pf-form" onsubmit="event.preventDefault(); guardar();">
+
+        <div class="pf-field">
+          <label for="pf-nombre">Nombre de usuario</label>
+          <div class="pf-row">
+            <input type="text" id="pf-nombre" class="pf-input" value="AsDePicas" maxlength="20" readonly>
+            <button type="button" class="pf-btn-outline" id="pf-editar">Editar</button>
+          </div>
+        </div>
+
+        <div class="pf-field">
+          <label for="pf-bio">Sobre mí</label>
+          <div class="pf-textarea-wrap">
+            <textarea id="pf-bio" class="pf-textarea" maxlength="200">Siempre buscando la próxima gran mano. Mi carta favorita es el as de picas.</textarea>
+            <span class="pf-counter" id="pf-contador">0 / 200</span>
+          </div>
+        </div>
+
+        <div class="pf-footer">
+          <span class="pf-unsaved" id="pf-aviso" hidden>Cambios sin guardar</span>
+          <div class="pf-actions">
+            <button type="button" class="pf-btn-outline" id="pf-cancelar">Cancelar</button>
+            <button type="submit" class="pf-btn-primary">Guardar cambios</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- Pie de página -->
+  <footer class="hub-footer">
+    <a href="creditos.html" class="btn btn-outline" style="width: 100px;">Créditos</a>
+    <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">BALATRO 2.0</span>
+    <span style="font-size: 0.75rem; color: var(--text-muted);">Cada mano cuenta.</span>
+  </footer>
+
+</main>
+
+<script>
+  // Foto preestablecida (carta de as de picas dibujada en SVG)
+  var FOTO_PRESET = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">' +
+    '<circle cx="60" cy="60" r="58" fill="#1e3a6e" stroke="#3b5fb0" stroke-width="3"/>' +
+    '<circle cx="60" cy="60" r="50" fill="none" stroke="#2e4a8a" stroke-width="1" stroke-dasharray="2 3"/>' +
+    '<rect x="36" y="32" width="48" height="66" rx="5" fill="#f5f1e6" stroke="#2a2a2a" stroke-width="1.5"/>' +
+    '<path d="M46 26 L50 16 L56 23 L60 13 L64 23 L70 16 L74 26 Z" fill="#c8272d"/>' +
+    '<text x="41" y="46" font-size="10" font-weight="700" fill="#1b1b1b" font-family="Georgia, serif">A</text>' +
+    '<path d="M60 52 C52 60 42 64 44 72 C46 79 54 78 58 74 L56 86 L64 86 L62 74 C66 78 74 79 76 72 C78 64 68 60 60 52 Z" fill="#1b1b1b"/>' +
+    '<text x="79" y="92" font-size="10" font-weight="700" fill="#1b1b1b" font-family="Georgia, serif" transform="rotate(180 79 88)">A</text>' +
+    '</svg>';
+
+  var fotoImg = document.getElementById('pf-avatar-img');
+  var fotoBtn = document.getElementById('pf-btn-foto');
+  var fotoInput = document.getElementById('pf-file');
+  var nombreInput = document.getElementById('pf-nombre');
+  var bio = document.getElementById('pf-bio');
+  var contador = document.getElementById('pf-contador');
+  var aviso = document.getElementById('pf-aviso');
+  var editar = document.getElementById('pf-editar');
+
+  var MAX_BYTES = 5 * 1024 * 1024;
+
+  // Foto inicial: la preestablecida
+  fotoImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(FOTO_PRESET);
+
+  // Abrir el selector de archivos
+  fotoBtn.addEventListener('click', function () {
+    fotoInput.click();
+  });
+
+  // Mostrar la foto subida dentro del círculo
+  fotoInput.addEventListener('change', function () {
+    var archivo = fotoInput.files[0];
+    if (!archivo) return;
+
+    if (archivo.type !== 'image/jpeg' && archivo.type !== 'image/png') {
+      alert('Solo se permiten imágenes JPG o PNG.');
+      fotoInput.value = '';
+      return;
+    }
+    if (archivo.size > MAX_BYTES) {
+      alert('La imagen supera el máximo de 5 MB.');
+      fotoInput.value = '';
+      return;
+    }
+
+    var lector = new FileReader();
+    lector.onload = function (e) {
+      fotoImg.src = e.target.result;
+    };
+    lector.readAsDataURL(archivo);
+
+    // Permite volver a elegir el mismo archivo más adelante
+    fotoInput.value = '';
+  });
+
+  // Valores guardados
+  var guardado = { nombre: nombreInput.value, bio: bio.value };
+
+  function actualizarContador() {
+    contador.textContent = bio.value.length + ' / ' + bio.maxLength;
+  }
+
+  function hayCambios() {
+    return nombreInput.value !== guardado.nombre || bio.value !== guardado.bio;
+  }
+
+  function actualizarAviso() {
+    aviso.hidden = !hayCambios();
+  }
+
+  editar.addEventListener('click', function () {
+    if (nombreInput.hasAttribute('readonly')) {
+      nombreInput.removeAttribute('readonly');
+      nombreInput.focus();
+      editar.textContent = 'Listo';
+    } else {
+      nombreInput.setAttribute('readonly', '');
+      editar.textContent = 'Editar';
+    }
+  });
+
+  bio.addEventListener('input', function () {
+    actualizarContador();
+    actualizarAviso();
+  });
+
+  nombreInput.addEventListener('input', actualizarAviso);
+
+  document.getElementById('pf-cancelar').addEventListener('click', function () {
+    nombreInput.value = guardado.nombre;
+    bio.value = guardado.bio;
+    nombreInput.setAttribute('readonly', '');
+    editar.textContent = 'Editar';
+    actualizarContador();
+    actualizarAviso();
+  });
+
+  function guardar() {
+    guardado = { nombre: nombreInput.value, bio: bio.value };
+    nombreInput.setAttribute('readonly', '');
+    editar.textContent = 'Editar';
+    actualizarAviso();
+  }
+
+  actualizarContador();
+
+  // Aplica el tema elegido en configuración
+  if (localStorage.getItem('balatro-theme') === 'light') {
+    document.body.classList.add('theme-light');
+  }
+</script>
+</body>
+</html>

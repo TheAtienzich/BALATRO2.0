@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balatro 2.0 - Configuración</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="display: block;">
+<main class="main-view-container">
+
+  <!-- Barra Superior -->
+  <header class="header-bar">
+    <div class="header-left">
+      <a href="../index.html" class="back-square-btn">‹</a>
+      <div>
+        <div class="breadcrumb-path">Menú / Configuración</div>
+        <div class="top-left-status" style="position: static; font-size: 0.75rem;">
+          <span class="status-dot"></span>
+          Sesión iniciada
+        </div>
+      </div>
+    </div>
+
+    <div class="header-center-title">BALATRO 2.0</div>
+
+    <div class="header-right">
+      <a href="perfil.html" class="btn btn-outline" style="width: auto; padding: 10px 18px;">Perfil</a>
+      <a href="configuracion.html" class="btn btn-outline" style="width: auto; padding: 10px 18px;">Configuración</a>
+    </div>
+  </header>
+
+  <!-- Tarjeta de configuración -->
+  <section class="cfg-card">
+    <h1 class="cfg-title">Configuración</h1>
+    <p class="cfg-subtitle">Haz que la mesa se sienta como en casa.</p>
+
+    <h2 class="cfg-section-title">Apariencia</h2>
+
+    <div class="cfg-theme-options">
+      <button type="button" class="cfg-theme-option active" data-theme="dark" aria-pressed="true">
+        <div class="cfg-theme-preview cfg-preview-dark">
+          <span class="cfg-preview-line"></span>
+          <span class="cfg-preview-bar"></span>
+          <span class="cfg-preview-accent"></span>
+        </div>
+        <div class="cfg-theme-footer">
+          <span>Modo oscuro</span>
+          <span class="cfg-selected"><span class="cfg-dot"></span>Seleccionado</span>
+        </div>
+      </button>
+
+      <button type="button" class="cfg-theme-option" data-theme="light" aria-pressed="false">
+        <div class="cfg-theme-preview cfg-preview-light">
+          <span class="cfg-preview-line"></span>
+          <span class="cfg-preview-bar"></span>
+          <span class="cfg-preview-accent"></span>
+        </div>
+        <div class="cfg-theme-footer">
+          <span>Modo claro</span>
+          <span class="cfg-radio"></span>
+        </div>
+      </button>
+    </div>
+
+    <div class="cfg-row">
+      <span>Música</span>
+      <button type="button" class="cfg-pill" data-toggle data-on="Activada" data-off="Desactivada">Activada</button>
+    </div>
+
+    <div class="cfg-row">
+      <span>Efectos de sonido</span>
+      <button type="button" class="cfg-pill" data-toggle data-on="Activados" data-off="Desactivados">Activados</button>
+    </div>
+
+    <div class="cfg-row">
+      <span>Idioma</span>
+      <button type="button" class="cfg-pill">Español</button>
+    </div>
+
+    <p class="cfg-note">Los cambios de configuración se guardan automáticamente.</p>
+  </section>
+
+  <!-- Pie de página -->
+  <footer class="hub-footer">
+    <a href="creditos.html" class="btn btn-outline" style="width: 100px;">Créditos</a>
+    <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">BALATRO 2.0</span>
+    <span style="font-size: 0.75rem; color: var(--text-muted);">Cada mano cuenta.</span>
+  </footer>
+
+</main>
+
+<script>
+  var body = document.body;
+
+  function aplicarTema(tema) {
+    body.classList.toggle('theme-light', tema === 'light');
+    document.querySelectorAll('.cfg-theme-option').forEach(function (opt) {
+      var activo = opt.dataset.theme === tema;
+      opt.classList.toggle('active', activo);
+      opt.setAttribute('aria-pressed', String(activo));
+      var pie = opt.querySelector('.cfg-theme-footer');
+      pie.lastElementChild.outerHTML = activo
+        ? '<span class="cfg-selected"><span class="cfg-dot"></span>Seleccionado</span>'
+        : '<span class="cfg-radio"></span>';
+    });
+    localStorage.setItem('balatro-theme', tema);
+  }
+
+  document.querySelectorAll('.cfg-theme-option').forEach(function (opt) {
+    opt.addEventListener('click', function () {
+      aplicarTema(opt.dataset.theme);
+    });
+  });
+
+  document.querySelectorAll('[data-toggle]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var encendido = btn.dataset.estado !== 'off';
+      btn.dataset.estado = encendido ? 'off' : 'on';
+      btn.textContent = encendido ? btn.dataset.off : btn.dataset.on;
+    });
+  });
+
+  // Recuerda el tema elegido (por defecto, oscuro)
+  aplicarTema(localStorage.getItem('balatro-theme') || 'dark');
+</script>
+</body>
+</html>
