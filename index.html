@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      if (localStorage.getItem('balatro-theme') === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    </script>
     <title>Balatro 2.0 - Menú Principal</title>
     <link rel="stylesheet" href="css/style.css">
   </head>

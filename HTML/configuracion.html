@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+      if (localStorage.getItem('balatro-theme') === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    </script>
   <title>Balatro 2.0 - Configuración</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -91,10 +96,8 @@
 </main>
 
 <script>
-  var body = document.body;
-
   function aplicarTema(tema) {
-    body.classList.toggle('theme-light', tema === 'light');
+    document.documentElement.classList.toggle('theme-light', tema === 'light');
     document.querySelectorAll('.cfg-theme-option').forEach(function (opt) {
       var activo = opt.dataset.theme === tema;
       opt.classList.toggle('active', activo);

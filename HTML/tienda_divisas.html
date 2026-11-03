@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+      if (localStorage.getItem('balatro-theme') === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    </script>
   <title>Balatro 2.0 - Tienda de Divisas</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -42,7 +47,7 @@
       <div style="font-size: 3rem; margin: 15px 0;">🪙</div>
       <h3 class="item-name">500 Divisas</h3>
       <p class="lobby-message" style="margin-bottom: 15px; font-size: 0.8rem;">Ideal para comenzar y personalizar tu primera baraja.</p>
-      <span class="item-price" style="color: #fff;">2.99 €</span>
+      <span class="item-price">2.99 €</span>
       <button class="btn btn-primary" style="font-size: 0.85rem;">Comprar Paquete</button>
     </article>
 
@@ -52,7 +57,7 @@
       <div style="font-size: 3rem; margin: 15px 0;">💰</div>
       <h3 class="item-name">1,500 Divisas</h3>
       <p class="lobby-message" style="margin-bottom: 15px; font-size: 0.8rem;">+150 Divisas de bonificación incluidas.</p>
-      <span class="item-price" style="color: #fff;">7.99 €</span>
+      <span class="item-price">7.99 €</span>
       <button class="btn btn-primary" style="font-size: 0.85rem;">Comprar Paquete</button>
     </article>
 
@@ -62,7 +67,7 @@
       <div style="font-size: 3rem; margin: 15px 0;">💎</div>
       <h3 class="item-name">5,000 Divisas</h3>
       <p class="lobby-message" style="margin-bottom: 15px; font-size: 0.8rem;">Suficiente para desbloquear barajas y cartas raras.</p>
-      <span class="item-price" style="color: #fff;">19.99 €</span>
+      <span class="item-price">19.99 €</span>
       <button class="btn btn-primary" style="font-size: 0.85rem;">Comprar Paquete</button>
     </article>
   </section>

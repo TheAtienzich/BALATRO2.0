@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+      if (localStorage.getItem('balatro-theme') === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    </script>
   <title>Balatro 2.0 - Tienda</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -28,7 +33,7 @@
       <div class="balance-badge">
         Saldo <strong>1.250 fichas</strong>
       </div>
-      <a href="#" class="btn btn-outline" style="width: auto; padding: 10px 18px;">Configuración</a>
+      <a href="configuracion.html" class="btn btn-outline" style="width: auto; padding: 10px 18px;">Configuración</a>
     </div>
   </header>
 
@@ -78,7 +83,7 @@
 
   <!-- Pie de página -->
   <footer class="hub-footer">
-    <a href="#" class="btn btn-outline" style="width: 100px;">Créditos</a>
+    <a href="creditos.html" class="btn btn-outline" style="width: 100px;">Créditos</a>
     <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">BALATRO 2.0</span>
     <span style="font-size: 0.75rem; color: var(--text-muted);">Cada mano cuenta.</span>
   </footer>
