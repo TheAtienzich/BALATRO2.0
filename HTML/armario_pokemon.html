@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        if (localStorage.getItem('balatro-theme') === 'light') {
+          document.documentElement.classList.add('theme-light');
+        }
+    </script>
+    <title>Balatro 2.0 - Armario Pokémon</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<main class="shop-layout">
+    <!-- Barra superior -->
+    <header class="shop-topbar">
+        <div>
+            <span class="card-subtitle">COLECCIÓN PERSONAL</span>
+            <h1 class="card-title" style="font-size: 1.8rem; text-align: left;">POKÉMON DISPONIBLES</h1>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <a href="armario.html" class="btn btn-outline" style="width: auto;">Volver al Armario</a>
+        </div>
+    </header>
+
+    <!-- Pestañas de navegación de armario -->
+    <nav class="shop-nav">
+        <a href="armario_barajas.html" class="nav-tab">🃏 Barajas (4 en colección)</a>
+        <a href="armario_pokemon.html" class="nav-tab active">⚡ Pokémon (3 en colección)</a>
+    </nav>
+
+    <!-- Catálogo de Pokémon del usuario -->
+    <section class="shop-grid">
+        <!-- Pokémon 1: Pikachu (Equipado) -->
+        <article class="item-card" style="border-color: var(--accent-yellow);">
+            <span class="item-badge" style="color: #10b981;">✓ Equipado</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
+            </div>
+            <h3 class="item-name">Pikachu</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Eléctrico · Común</p>
+            <button class="btn btn-secondary" style="font-size: 0.8rem;" disabled>En uso</button>
+        </article>
+
+        <!-- Pokémon 2: Bulbasaur -->
+        <article class="item-card">
+            <span class="item-badge">En tu colección</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Bulbasaur">
+            </div>
+            <h3 class="item-name">Bulbasaur</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Planta · Común</p>
+            <button class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+
+        <!-- Pokémon 3: Charmander -->
+        <article class="item-card">
+            <span class="item-badge">En tu colección</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Charmander">
+            </div>
+            <h3 class="item-name">Charmander</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Fuego · Común</p>
+            <button class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+    </section>
+</main>
+</body>
+</html>

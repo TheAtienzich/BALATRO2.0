@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        if (localStorage.getItem('balatro-theme') === 'light') {
+          document.documentElement.classList.add('theme-light');
+        }
+    </script>
+    <title>Balatro 2.0 - Armario de Barajas</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<main class="shop-layout">
+    <!-- Barra superior -->
+    <header class="shop-topbar">
+        <div>
+            <span class="card-subtitle">COLECCIÓN PERSONAL</span>
+            <h1 class="card-title" style="font-size: 1.8rem; text-align: left;">BARAJAS DISPONIBLES</h1>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <a href="armario.html" class="btn btn-outline" style="width: auto;">Volver al Armario</a>
+        </div>
+    </header>
+
+    <!-- Pestañas de navegación de armario -->
+    <nav class="shop-nav">
+        <a href="armario_barajas.html" class="nav-tab active">🃏 Barajas (2 en colección)</a>
+        <a href="armario_pokemon.html" class="nav-tab">⚡ Pokémon (3 en colección)</a>
+    </nav>
+
+    <!-- Catálogo de barajas del usuario -->
+    <section class="shop-grid">
+        <!-- Baraja 1: Equipada -->
+        <article class="item-card" style="border-color: var(--accent-yellow);">
+            <span class="item-badge" style="color: #10b981;">✓ Equipada</span>
+            <div class="deck-card-preview default-red" style="margin: 15px 0;"></div>
+            <h3 class="item-name">Baraja roja</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Reverso clásico · 52 cartas</p>
+            <button class="btn btn-secondary" style="font-size: 0.8rem;" disabled>En uso</button>
+        </article>
+
+        <!-- Baraja 2 -->
+        <article class="item-card">
+            <span class="item-badge">En tu colección</span>
+            <div class="deck-card-preview default-blue" style="margin: 15px 0;"></div>
+            <h3 class="item-name">Baraja azul</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Reverso clásico · 52 cartas</p>
+            <button class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+
+    </section>
+</main>
+</body>
+</html>
