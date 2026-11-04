@@ -1663,4 +1663,24 @@ body.theme-light .hub-footer span {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+
+  /* =========================================
+     CARTAS COMPRADAS
+     ========================================= */
+  .item-card.comprado {
+    border-color: #10b981 !important;
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(16, 185, 129, 0.08) 100%);
+    position: relative;
+  }
+
+  .item-card.comprado .item-badge {
+    color: #10b981 !important;
+  }
+
+  .btn-comprado {
+    background-color: rgba(16, 185, 129, 0.2) !important;
+    color: #10b981 !important;
+    border: 1px solid #10b981 !important;
+    cursor: default !important;
+  }
 }
