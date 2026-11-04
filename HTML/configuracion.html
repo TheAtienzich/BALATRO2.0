@@ -3,11 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-      if (localStorage.getItem('balatro-theme') === 'light') {
-        document.documentElement.classList.add('theme-light');
-      }
-    </script>
+    <script src="../src/tema.js"></script>
   <title>Balatro 2.0 - Configuración</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -95,37 +91,8 @@
 
 </main>
 
-<script>
-  function aplicarTema(tema) {
-    document.documentElement.classList.toggle('theme-light', tema === 'light');
-    document.querySelectorAll('.cfg-theme-option').forEach(function (opt) {
-      var activo = opt.dataset.theme === tema;
-      opt.classList.toggle('active', activo);
-      opt.setAttribute('aria-pressed', String(activo));
-      var pie = opt.querySelector('.cfg-theme-footer');
-      pie.lastElementChild.outerHTML = activo
-        ? '<span class="cfg-selected"><span class="cfg-dot"></span>Seleccionado</span>'
-        : '<span class="cfg-radio"></span>';
-    });
-    localStorage.setItem('balatro-theme', tema);
-  }
 
-  document.querySelectorAll('.cfg-theme-option').forEach(function (opt) {
-    opt.addEventListener('click', function () {
-      aplicarTema(opt.dataset.theme);
-    });
-  });
+<script src="../src/configuracion.js"></script>
 
-  document.querySelectorAll('[data-toggle]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var encendido = btn.dataset.estado !== 'off';
-      btn.dataset.estado = encendido ? 'off' : 'on';
-      btn.textContent = encendido ? btn.dataset.off : btn.dataset.on;
-    });
-  });
-
-  // Recuerda el tema elegido (por defecto, oscuro)
-  aplicarTema(localStorage.getItem('balatro-theme') || 'dark');
-</script>
 </body>
 </html>

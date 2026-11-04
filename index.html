@@ -3,15 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-      if (localStorage.getItem('balatro-theme') === 'light') {
-        document.documentElement.classList.add('theme-light');
-      }
-    </script>
+    <script src="src/tema.js"></script>
     <title>Balatro 2.0 - Menú Principal</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
+  <body style="padding-bottom: 50px;">
     <div class="green-accent-line"></div>
 
     <div class="top-left-status">
@@ -53,7 +49,11 @@
       </div>
     </div>
 
-    <a href="HTML/creditos.html" class="btn btn-outline bottom-left-btn">Créditos</a>
-    <span class="bottom-right-caption">Cada mano cuenta.</span>
+   
+    <footer class="hub-footer index-footer">
+      <a href="HTML/creditos.html" class="btn btn-outline" style="width: 100px;">Créditos</a>
+      <span class="index-footer-brand">BALATRO 2.0</span>
+      <span class="index-footer-slogan">Cada mano cuenta.</span>
+    </footer>
   </body>
 </html>
