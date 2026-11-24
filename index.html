@@ -1,60 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="src/js/tema.js"></script>
-    <title>Balatro 2.0 - Menú Principal</title>
-    <link rel="stylesheet" href="src/css/style.css">
-  </head>
-  <body style="padding-bottom: 50px;">
-    <div class="green-accent-line"></div>
-
-    <div class="top-left-status">
-      <span class="status-dot"></span>
-      Sesión iniciada
-      <a href="src/pages/login.html" class="btn btn-outline btn-logout">Cerrar sesión</a>
-    </div>
-
-    <div class="top-right-nav">
-      <a href="src/pages/perfil.html" class="btn btn-outline">Perfil</a>
-      <a href="src/pages/configuracion.html" class="btn btn-outline">Configuración</a>
-      <a href="#" class="btn btn-outline">Información</a>
-    </div>
-
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="src/js/tema.js"></script>
+  <script src="src/js/login.js" defer></script>
+  <title>Balatro 2.0 - Iniciar Sesión</title>
+  <link rel="stylesheet" href="src/css/style.css">
+</head>
+  <body>
     <div class="card-container">
-      <span class="card-subtitle">Juego de cartas en línea</span>
+      <span class="card-subtitle">Juego de cartas online</span>
       <h1 class="card-title">BALATRO 2.0</h1>
       <div class="divider-line"></div>
 
-      <div class="cards-visual">
-        <div class="card-item card-back"></div>
-        <div class="card-item card-ace">
-          <span class="top-left">A♠</span>
-          <span class="spade-center">♠</span>
-          <span class="bottom-right">A♠</span>
+      <form id="login-form" action="src/pages/menu.html" method="get">
+        <div class="form-group">
+          <label for="login-email">Cuenta</label>
+          <input type="text" id="login-email" name="email" class="form-control" placeholder="Escribe tu cuenta" autocomplete="username" required>
         </div>
-        <div class="card-item card-king">
-          <span class="top-left">K♥</span>
-          <span class="king-center">♚</span>
-          <span class="bottom-right">K♥</span>
+
+        <div class="form-group">
+          <label for="login-password">Contraseña</label>
+          <input type="password" id="login-password" name="password" class="form-control" placeholder="••••••••••" autocomplete="current-password" required>
         </div>
-      </div>
 
-      <p class="lobby-message">La mesa está lista. Tu próxima mano te espera.</p>
+        <button type="submit" class="btn btn-primary" style="margin-top: 1.2rem;">LOGIN</button>
 
-      <div style="width: 100%;">
-        <a href="#" class="btn btn-primary">Jugar</a>
-        <a href="src/pages/tienda.html" class="btn btn-secondary">Tienda</a>
-        <a href="src/pages/armario.html" class="btn btn-secondary">Armario</a>
-      </div>
+        <div class="form-footer-links">
+          <a href="src/pages/registro.html" class="link-yellow">crear nuevo usuario</a>
+          <a href="src/pages/recuperar.html" class="link-muted">olvidar su contraseña</a>
+        </div>
+      </form>
     </div>
 
-   
-    <footer class="hub-footer index-footer">
-      <a href="src/pages/creditos.html" class="btn btn-outline" style="width: 100px;">Créditos</a>
-      <span class="index-footer-brand">BALATRO 2.0</span>
-      <span class="index-footer-slogan">Cada mano cuenta.</span>
-    </footer>
+    <span class="bottom-center-caption">BALATRO 2.0</span>
   </body>
 </html>
