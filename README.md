@@ -25,3 +25,57 @@ Estructura de un turno
 6\. El jugador cobra el dinero de la mano y termina su turno.
 
 Una **ronda** son los 4 turnos, uno por cada jugador. Cuando la baraja se agota, las cartas descartadas y jugadas se barajan para formar una nueva.
+
+
+
+#  Guía de ejecución
+
+
+
+### 1. Instalar las dependencias
+
+Desde la raíz del proyecto:
+
+```powershell
+npm install express mongoose bcryptjs jsonwebtoken
+```
+
+> `node_modules` no se sube a GitHub, por lo que es necesario instalar las dependencias en cada equipo.
+
+
+
+### 2. Crear la cuenta de prueba
+
+```powershell
+node server\seed.js
+```
+
+- Si aparece `Usuario de prueba creado`, la cuenta se ha creado correctamente.
+- Si aparece `El usuario de prueba ya existe`, la cuenta ya estaba en la base de datos.
+
+### 3. Iniciar el servidor
+
+```powershell
+node server\app.js
+```
+
+Debe mostrarse:
+
+```
+MongoDB conectado
+Servidor en http://localhost:3000
+```
+
+### 4. Iniciar sesión
+
+
+| Campo      | Valor                |
+|------------|----------------------|
+| Correo     | `admin@balatro.com`  |
+| Contraseña | `12345678`           |
+
+Tras iniciar sesión correctamente, se redirige a `/menu.html`.
+
+---
+
+> **Nota:** en macOS o Linux, usar `/` en lugar de `\` en las rutas de los comandos (por ejemplo, `node server/seed.js`).

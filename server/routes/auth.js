@@ -1,29 +1,28 @@
+const { Router } = require('express');
+const authService = require('../models/auth');
 
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const User = require('/models/user');
+const router = Router();
 
-const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'cambia-esto';
-
-router.post('/register', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.create({ email, password });
-    res.status(201).json({ message: 'Usuario creado' });
+    const token = await authService.login(email, password);
+    if (!token) {
+      return res.status(401).json({ message: 'Credenciales incorrectas' });
+    }
+    res.json({ accessToken: token });
   } catch (err) {
-    res.status(400).json({ message: 'No se pudo registrar: ' + err.message });
+    res.status(500).json({ message: 'Error interno del servidor' });
   }
 });
 
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email: email?.toLowerCase() });
-  if (!user || !(await user.comparePassword(password))) {
-    return res.status(401).json({ message: 'Email o contraseña incorrectos' });
+router.post('/register', async (req, res) => {
+  try {
+    const user = await authService.register(req.body);
+    res.status(201).json(user);
+  } catch (err) {
+    res.status(err.status || 500).json({ message: err.message });
   }
-  const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '2h' });
-  res.json({ token });
 });
 
 module.exports = router;
