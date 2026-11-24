@@ -8,3 +8,9 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# Dependencias
+node_modules/
+# Variables de entorno (contraseñas)
+.env
+# IDE (JetBrains)
+.idea/
