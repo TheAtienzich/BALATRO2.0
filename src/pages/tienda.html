@@ -1,93 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-      if (localStorage.getItem('balatro-theme') === 'light') {
-        document.documentElement.classList.add('theme-light');
-      }
-    </script>
-  <title>Balatro 2.0 - Tienda</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Partida - Ronda 5 | Póker Pokémon</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="display: block;">
-<main class="main-view-container">
+<body>
 
-  <!-- Barra Superior -->
-  <header class="header-bar">
-    <div class="header-left">
-      <a href="../../index.html" class="back-square-btn">‹</a>
-      <div>
-        <div class="breadcrumb-path">Menú / Tienda</div>
-        <div class="top-left-status" style="position: static; font-size: 0.75rem;">
-          <span class="status-dot"></span>
-          Sesión iniciada
-        </div>
-      </div>
+<!-- Contenedor principal de la Tienda en Partida (aparece al inicio y cada 5 rondas) -->
+<main class="ig-shop-wrapper">
+    <div class="ig-shop-board">
+
+        <!-- CABECERA: Botón atrás, Título de Ronda y Cartera ($) -->
+        <header class="ig-shop-header">
+            <a href="#" class="ig-back-btn" title="Volver a la mesa">&lt;</a>
+
+            <div class="ig-header-center">
+                <h1 class="ig-shop-title">TIENDA - RONDA 5</h1>
+                <p class="ig-shop-subtitle">Compra Comodines (máx. 5) y Mejoras (máx. 2 por partida)</p>
+            </div>
+
+            <div class="ig-wallet">
+                <span class="ig-coin-icon">$</span>
+                <span class="ig-wallet-amount" id="player-money">$12</span>
+            </div>
+        </header>
+
+        <!-- REJILLA DE 5 CARTAS: 3 Comodines aleatorios (de 8) + 2 Mejoras aleatorias (de 5) -->
+        <section class="ig-cards-grid">
+
+            <!-- 1. COMODÍN COMÚN (2$ | Venta: 1$) -->
+            <article class="ig-card-frame frame-common" data-name="Monedero" data-price="2" data-sell="1">
+                <div class="ig-card-inner light-card">
+                    <span class="ig-rarity-pill pill-common">COMÚN</span>
+                    <h2 class="ig-item-title">MONEDERO</h2>
+                    <div class="ig-icon-circle circle-common">★</div>
+                    <p class="ig-item-desc">+1$ extra por cada mano jugada</p>
+
+                    <div class="ig-card-actions">
+                        <div class="ig-price-box">$2</div>
+                        <div class="ig-sell-box">Vender por $1</div>
+                        <button type="button" class="ig-buy-trigger">COMPRAR</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2. COMODÍN RARO (5$ | Venta: 2.5$) -->
+            <article class="ig-card-frame frame-rare" data-name="Tormenta" data-price="5" data-sell="2.5">
+                <div class="ig-card-inner light-card">
+                    <span class="ig-rarity-pill pill-rare">RARO</span>
+                    <h2 class="ig-item-title">TORMENTA</h2>
+                    <div class="ig-icon-circle circle-rare">✦</div>
+                    <p class="ig-item-desc">El ataque golpea a todos los Pokémon de un rival al 50% del daño</p>
+
+                    <div class="ig-card-actions">
+                        <div class="ig-price-box">$5</div>
+                        <div class="ig-sell-box">Vender por $2.5</div>
+                        <button type="button" class="ig-buy-trigger">COMPRAR</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 3. COMODÍN MÍTICO (8$ | Venta: 4$) -->
+            <article class="ig-card-frame frame-mythic" data-name="Carta comodín" data-price="8" data-sell="4">
+                <div class="ig-card-inner light-card">
+                    <span class="ig-rarity-pill pill-mythic">MÍTICO</span>
+                    <h2 class="ig-item-title">CARTA COMODÍN</h2>
+                    <div class="ig-icon-circle circle-mythic">✹</div>
+                    <p class="ig-item-desc">Una carta de tu mano cuenta como la que quieras, una vez por turno</p>
+
+                    <div class="ig-card-actions">
+                        <div class="ig-price-box">$8</div>
+                        <div class="ig-sell-box">Vender por $4</div>
+                        <button type="button" class="ig-buy-trigger">COMPRAR</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 4. MEJORA 1: CORAZA (4$ | Venta: 2$) -->
+            <article class="ig-card-frame frame-upgrade-red" data-name="Mejora: Coraza" data-price="4" data-sell="2">
+                <div class="ig-card-inner dark-card">
+                    <span class="ig-rarity-pill pill-upgrade-red">MEJORA</span>
+                    <div class="ig-icon-circle circle-upgrade-red">CORAZA</div>
+                    <h2 class="ig-upgrade-title">+25% Vida Máxima</h2>
+                    <p class="ig-upgrade-limit">Máximo 1 por Pokémon | 2 en total</p>
+
+                    <div class="ig-card-actions">
+                        <div class="ig-price-box dark-price">$4</div>
+                        <button type="button" class="ig-buy-trigger">COMPRAR</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 5. MEJORA 2: EVOLUCIÓN (6$ | Venta: 3$) -->
+            <article class="ig-card-frame frame-upgrade-blue" data-name="Mejora: Evolución" data-price="6" data-sell="3">
+                <div class="ig-card-inner dark-card">
+                    <span class="ig-rarity-pill pill-upgrade-blue">MEJORA</span>
+                    <div class="ig-icon-circle circle-upgrade-blue">EVOLUCIÓN</div>
+                    <h2 class="ig-upgrade-title">Siguiente Forma</h2>
+                    <p class="ig-upgrade-limit">Conserva % de vida | Máx. 2 en partida</p>
+
+                    <div class="ig-card-actions">
+                        <div class="ig-price-box dark-price">$6</div>
+                        <button type="button" class="ig-buy-trigger">COMPRAR</button>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- BARRA INFERIOR: Cambiar tienda, Venta rápida (50% valor) y Confirmación -->
+        <footer class="ig-shop-footer">
+
+            <!-- Botón Cambiar Tienda -->
+            <div class="ig-Diamond-col">
+                <button type="button" class="ig-diamond-btn diamond-yellow" title="Actualizar objetos de la tienda">
+                    <span>↻</span>
+                </button>
+                <span class="ig-diamond-caption">CAMBIAR TIENDA</span>
+            </div>
+
+            <!-- Panel de Venta Rápida (Comodines y Mejoras equipadas se venden al 50%) -->
+            <div class="ig-quicksell-box">
+                <span class="ig-quicksell-label">VENTA RÁPIDA (COMODINES Y MEJORAS EN POSESIÓN)</span>
+                <div class="ig-quicksell-content">
+                    <div class="ig-slots-row">
+                        <!-- Ranura ocupada de ejemplo (Descarte extra: Común comprado por 2$, vende por 1$) -->
+                        <button type="button" class="ig-slot active-slot" title="Descarte extra (+1 descarte) - Vender por $1">★</button>
+                        <!-- Ranuras vacías hasta los 5 comodines permitidos -->
+                        <button type="button" class="ig-slot empty-slot" title="Hueco de comodín vacío">♠</button>
+                        <button type="button" class="ig-slot empty-slot" title="Hueco de comodín vacío">♠</button>
+                        <button type="button" class="ig-slot empty-slot" title="Hueco de comodín vacío">♠</button>
+                        <button type="button" class="ig-slot empty-slot" title="Hueco de comodín vacío">♠</button>
+                    </div>
+                    <button type="button" class="ig-btn-sell">VENDER (50% VALOR)</button>
+                </div>
+            </div>
+
+            <!-- Botón Confirmar / Carrito -->
+            <div class="ig-Diamond-col">
+                <button type="button" class="ig-diamond-btn diamond-green" id="confirm-buy-btn" title="Confirmar selección">
+                    <span>🛒</span>
+                </button>
+                <span class="ig-diamond-caption" id="selected-item-label">Selecciona un objeto</span>
+            </div>
+
+        </footer>
+
     </div>
-
-    <div class="header-center-title">BALATRO 2.0</div>
-
-    <div class="header-right">
-      <div class="balance-badge">
-        Saldo <strong>1.250 fichas</strong>
-      </div>
-      <a href="configuracion.html" class="btn btn-outline" style="width: auto; padding: 10px 18px;">Configuración</a>
-    </div>
-  </header>
-
-  <!-- Título de la página -->
-  <section class="page-header-intro">
-    <h1 class="main-page-title">Tienda</h1>
-    <p class="page-subtitle-text">Encuentra tu próxima baraja, un compañero o más fichas.</p>
-  </section>
-
-  <!-- Rejilla de Secciones de Tienda -->
-  <section class="hub-grid">
-
-    <!-- Tarjeta 1: Barajas -->
-    <article class="hub-card">
-      <div class="hub-card-preview">
-        <div class="preview-mini-card"></div>
-      </div>
-      <h2 class="hub-card-name">Barajas</h2>
-      <p class="hub-card-desc">6 barajas para cambiar el estilo de tus cartas.</p>
-      <a href="tienda_barajas.html" class="btn btn-primary">Explorar</a>
-    </article>
-
-    <!-- Tarjeta 2: Pokémon -->
-    <article class="hub-card">
-      <div class="hub-card-preview">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" class="preview-pokemon-img">
-      </div>
-      <h2 class="hub-card-name">Pokémon</h2>
-      <p class="hub-card-desc">6 compañeros para acompañarte en la mesa.</p>
-      <a href="tienda_pokemon.html" class="btn btn-primary">Explorar</a>
-    </article>
-
-    <!-- Tarjeta 3: Divisas -->
-    <article class="hub-card">
-      <div class="hub-card-preview">
-        <div class="preview-coins-container">
-          <div class="preview-coin c1">1</div>
-          <div class="preview-coin c2">1</div>
-        </div>
-      </div>
-      <h2 class="hub-card-name">Divisas</h2>
-      <p class="hub-card-desc">Packs de fichas para ampliar tu colección.</p>
-      <a href="tienda_divisas.html" class="btn btn-primary">Explorar</a>
-    </article>
-
-  </section>
-
-  <!-- Pie de página -->
-  <footer class="hub-footer">
-    <a href="creditos.html" class="btn btn-outline" style="width: 100px;">Créditos</a>
-    <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">BALATRO 2.0</span>
-    <span style="font-size: 0.75rem; color: var(--text-muted);">Cada mano cuenta.</span>
-  </footer>
-
 </main>
+
+<!-- Script ligero para seleccionar cartas y mostrar el objeto activo abajo a la derecha -->
+<script>
+    const cards = document.querySelectorAll('.ig-card-frame');
+    const selectedLabel = document.getElementById('selected-item-label');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            cards.forEach(c => c.classList.remove('selected-card'));
+            card.classList.add('selected-card');
+            const name = card.getAttribute('data-name');
+            const price = card.getAttribute('data-price');
+            selectedLabel.textContent = `${name} ($${price})`;
+        });
+    });
+</script>
+
 </body>
 </html>

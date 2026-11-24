@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partida | Póker Pokémon</title>
+  <link rel="stylesheet" href="../css/partida.css">
+</head>
+<body>
+
+  <!-- ============ 1. PANTALLA DE CARGA ============ -->
+  <!-- Ocupa toda la pantalla y se oculta sola al llegar la barra al 100% -->
+  <div id="carga">
+    <div class="fan"><i>A♠</i><i>K♥</i><i>Q♣</i><i>J♦</i><i>10♠</i></div> <!-- abanico de cartas animado -->
+    <h1>Póker Pokémon</h1>
+    <div class="bar"><b id="cargaBar"></b></div>  <!-- barra de progreso -->
+    <div id="cargaTxt">Barajando el mazo…</div>   <!-- mensaje que cambia -->
+  </div>
+
+  <!-- ============ 2. BARRA SUPERIOR (HUD) ============ -->
+  <header class="hud">
+    <div>
+      <h2 id="ronda">Ronda 1</h2>   <!-- número de ronda -->
+      <small id="turno"></small>    <!-- de quién es el turno -->
+    </div>
+    <div class="hud-right">
+      <span class="gold" id="dinero">$2</span>            <!-- tu dinero -->
+      <button class="btn" id="bShop">Tienda</button>      <!-- abre la tienda -->
+    </div>
+  </header>
+
+  <!-- ============ 3. MESA ============ -->
+  <!-- Cuadrícula: rival izquierda · rival arriba · rival derecha · centro -->
+  <main class="table" id="mesa">
+    <!-- Los 3 rivales se rellenan desde el JS (nombre, dinero, Pokémon) -->
+    <section class="rv" id="rv1"></section>
+    <section class="rv" id="rv2"></section>
+    <section class="rv" id="rv3"></section>
+
+    <!-- Centro de la mesa: info de la mano y del último ataque -->
+    <section class="mid">
+      <div class="deck" id="deckN">52</div>  <!-- mazo con cartas restantes -->
+      <h1 id="mano">Elige tus cartas</h1>    <!-- nombre de la mano (Pareja, Full...) -->
+      <p id="info"></p>                      <!-- daño previsto / registro del ataque -->
+    </section>
+  </main>
+
+  <!-- ============ 4. ZONA DEL JUGADOR ============ -->
+  <section class="me">
+    <div class="row">
+      <div class="team" id="miEquipo"></div>  <!-- tus 5 Pokémon -->
+      <div class="jk" id="miJk"></div>        <!-- tus comodines -->
+    </div>
+
+    <div class="hand" id="hand" aria-label="Tu mano"></div>  <!-- tus 7 cartas -->
+
+    <div class="acts">
+      <button class="btn" id="bAuto">Mejor mano</button>
+      <button class="btn" id="bDesc">Descartar</button>
+      <button class="btn go" id="bJugar">Jugar mano</button>
+    </div>
+  </section>
+
+  <!-- ============ 5. TIENDA DESPLEGABLE ============ -->
+  <div class="veil" id="veil"></div>  <!-- fondo oscuro; al pulsarlo cierra la tienda -->
+  <aside class="shop" id="shop" aria-label="Tienda">
+    <header>
+      <div>
+        <h2 id="shTit">Tienda</h2>
+        <p>Comodines (máx. 5) y mejoras (máx. 2 por partida, 1 por Pokémon)</p>
+      </div>
+      <div class="hud-right">
+        <span class="gold" id="shMoney"></span>
+        <button class="btn" id="bCerrar">Cerrar ▾</button>
+      </div>
+    </header>
+    <div class="offers" id="offers"></div>  <!-- 3 comodines + 2 mejoras -->
+    <div class="sell" id="sell"></div>      <!-- vender comodines al 50% -->
+  </aside>
+
+  <!-- ============ 6. AVISOS Y FIN DE PARTIDA ============ -->
+  <div class="toast" id="toast"></div>
+  <div class="end" id="end">
+    <h1 id="endT"></h1>
+    <button class="btn go" onclick="location.reload()">Jugar otra vez</button>
+  </div>
+
+  <script src="../js/partida.js"></script>
+</body>
+</html>
