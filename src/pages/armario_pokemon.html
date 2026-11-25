@@ -20,51 +20,130 @@
             <h1 class="card-title" style="font-size: 1.8rem; text-align: left;">POKÉMON DISPONIBLES</h1>
         </div>
         <div style="display: flex; gap: 10px; align-items: center;">
+            <div class="currency-display" id="equipo-contador">1 / 5 equipados</div>
             <a href="armario.html" class="btn btn-outline" style="width: auto;">Volver al Armario</a>
         </div>
     </header>
 
     <!-- Pestañas de navegación de armario -->
     <nav class="shop-nav">
-        <a href="armario_barajas.html" class="nav-tab">🃏 Barajas (4 en colección)</a>
-        <a href="armario_pokemon.html" class="nav-tab active">⚡ Pokémon (3 en colección)</a>
+        <a href="armario_barajas.html" class="nav-tab">🃏 Barajas</a>
+        <a href="armario_pokemon.html" class="nav-tab active">⚡ Pokémon (Equipo máx. 5)</a>
     </nav>
 
     <!-- Catálogo de Pokémon del usuario -->
     <section class="shop-grid">
         <!-- Pokémon 1: Pikachu (Equipado) -->
-        <article class="item-card" style="border-color: var(--accent-yellow);">
-            <span class="item-badge" style="color: #10b981;">✓ Equipado</span>
+        <article class="item-card" data-pokemon="pikachu" style="border-color: var(--accent-yellow);">
+            <span class="item-badge" style="color: #10b981;">✓ En equipo</span>
             <div class="pokemon-img-box" style="margin: 15px auto;">
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
             </div>
             <h3 class="item-name">Pikachu</h3>
-            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Eléctrico · Común</p>
-            <button class="btn btn-secondary" style="font-size: 0.8rem;" disabled>En uso</button>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Eléctrico · #0025</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Desequipar</button>
         </article>
 
         <!-- Pokémon 2: Bulbasaur -->
-        <article class="item-card">
+        <article class="item-card" data-pokemon="bulbasaur">
             <span class="item-badge">En tu colección</span>
             <div class="pokemon-img-box" style="margin: 15px auto;">
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Bulbasaur">
             </div>
             <h3 class="item-name">Bulbasaur</h3>
-            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Planta · Común</p>
-            <button class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Planta / Veneno · #0001</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
         </article>
 
         <!-- Pokémon 3: Charmander -->
-        <article class="item-card">
+        <article class="item-card" data-pokemon="charmander">
             <span class="item-badge">En tu colección</span>
             <div class="pokemon-img-box" style="margin: 15px auto;">
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Charmander">
             </div>
             <h3 class="item-name">Charmander</h3>
-            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Fuego · Común</p>
-            <button class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Fuego · #0004</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+
+        <!-- Pokémon 4: Squirtle (Ejemplo PokéWiki / Pokédex) -->
+        <article class="item-card" data-pokemon="squirtle">
+            <span class="item-badge">En tu colección</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" alt="Squirtle">
+            </div>
+            <h3 class="item-name">Squirtle</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Agua · #0007</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+
+        <!-- Pokémon 5: Gengar (Ejemplo PokéWiki / Pokédex) -->
+        <article class="item-card" data-pokemon="gengar">
+            <span class="item-badge">En tu colección</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png" alt="Gengar">
+            </div>
+            <h3 class="item-name">Gengar</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Fantasma / Veneno · #0094</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+
+        <!-- Pokémon 6: Eevee -->
+        <article class="item-card" data-pokemon="eevee">
+            <span class="item-badge">En tu colección</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png" alt="Eevee">
+            </div>
+            <h3 class="item-name">Eevee</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Normal · #0133</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+
+        <!-- Pokémon 7: Snorlax -->
+        <article class="item-card" data-pokemon="snorlax">
+            <span class="item-badge">En tu colección</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png" alt="Snorlax">
+            </div>
+            <h3 class="item-name">Snorlax</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Normal · #0143</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+
+        <!-- Pokémon 8: Lucario -->
+        <article class="item-card" data-pokemon="lucario">
+            <span class="item-badge">En tu colección</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png" alt="Lucario">
+            </div>
+            <h3 class="item-name">Lucario</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Lucha / Acero · #0448</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+
+        <!-- Pokémon 9: Rayquaza -->
+        <article class="item-card" data-pokemon="rayquaza">
+            <span class="item-badge">En tu colección</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png" alt="Rayquaza">
+            </div>
+            <h3 class="item-name">Rayquaza</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Dragón / Volador · #0384</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
+        </article>
+
+        <!-- Pokémon 10: Mewtwo -->
+        <article class="item-card" data-pokemon="mewtwo">
+            <span class="item-badge">En tu colección</span>
+            <div class="pokemon-img-box" style="margin: 15px auto;">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png" alt="Mewtwo">
+            </div>
+            <h3 class="item-name">Mewtwo</h3>
+            <p class="lobby-message" style="margin-bottom: 10px; font-size: 0.75rem;">Psíquico · #0150</p>
+            <button type="button" class="btn btn-secondary" style="font-size: 0.8rem;">Equipar</button>
         </article>
     </section>
 </main>
+<script src="../js/armario_pokemon.js" defer></script>
 </body>
 </html>
